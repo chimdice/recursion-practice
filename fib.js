@@ -6,38 +6,25 @@ function fibs (position) {
         let n2 = 1;
         const fibArray = [1]
         for (let i=position;i>1;i--) {
-            fibArray.push(n1+n2);
+            n3 = n1+n2
+            fibArray.push(n3);
             n1 = n2;
-            n2 = n2 + n1;
+            n2 = n3;
         };
         return fibArray;
     };
 };
 
 function fibsRec (position) {
-
-    const list = [];
-
-    if (position === 1) {
-        list.push(position)
+    if (position <= 1) {
+        let value = [position]
+        return value
     } else {
-        list.push(position)
-        fibsRec(position-1)
-    }
-    return list
-}
-
-function sumList (number) {
-    const list = []
-    if (number === 1) {
-        list.push(number)
-        return list
-    } else {
-        list.push(number)
-        const newlist = list.concat(sumList(number-1))
-        return newlist;
+        const value1 = fibsRec(position-2)
+        const value2 = fibsRec(position-1)
+        return value2.concat([value1[value1.length-1]+value2[value2.length -1]])
     }
 }
 
-const out = sumList(4);
-console.log(out)
+console.log(fibsRec(15))
+console.log(fibs(15))
